@@ -70,6 +70,11 @@
                                 </div>
                             </li>
                         @endguest
+                            <li class="nav-item">
+                                @if (Route::has('login'))
+                                    <a  class="nav-link">Version Française</a>
+                                @endif
+                            </li>
                     </ul>
                 </div>
             </div>
