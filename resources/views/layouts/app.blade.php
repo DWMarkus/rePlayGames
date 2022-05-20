@@ -42,13 +42,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -76,6 +76,8 @@
         </nav>
 
         <main class="py-4">
+            {{ __('messages.welcome', ['name' => config('app.name', 'Laravel') ]) }}
+            {{ __('I love programming.') }}
             @yield('content')
         </main>
     </div>
