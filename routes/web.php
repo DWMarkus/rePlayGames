@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -14,10 +15,27 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/home');
-});
-
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return redirect('/en/login');
+});
+
+Route::get('/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) { abort(400); }
+    App::setLocale($locale);
+});
+
+Route::get('/{locale}/home', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) { abort(400); }
+    App::setLocale($locale);
+    return view('home');
+});
+
+Route::get('/{locale}/login', function ($locale) {
+    if (! in_array($locale, ['en', 'fr'])) {
+        abort(400);
+    }
+    App::setLocale($locale);
+    return view('auth.login');
+});
